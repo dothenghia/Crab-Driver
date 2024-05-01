@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.SignupActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/back_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/icon_arrow_back"
+            android:layout_gravity="left"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="-40dp"
+            android:layout_height="30dp"
+            android:src="@drawable/logo"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Line 0: Image Picker (Centered) -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/avatar_iv"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/default_avatar"
+                    app:civ_border_width="4dp"
+                    app:civ_border_color="@color/black"/>
+
+                <!-- Button for picking a photo -->
+                <Button
+                    android:id="@+id/pick_avatar_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/pick_avatar"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/primary"/>
+
+            </LinearLayout>
+
+            <!-- Full Name -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:textStyle="bold"
+                    android:text="@string/personal_info"/>
+
+                <EditText
+                    android:id="@+id/fullnam_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@drawable/round_back_dark_blue"
+                    android:hint="@string/full_name"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:paddingStart="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="40dp"/>
+
+                <EditText
+                    android:id="@+id/phone_number_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@drawable/round_back_dark_blue"
+                    android:hint="@string/phone_number"
+                    android:maxLines="1"
+                    android:maxLength="10"
+                    android:inputType="phone"
+                    android:textSize="16sp"
+                    android:paddingStart="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="40dp"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/round_back_dark_blue">
+
+                    <EditText
+                        android:id="@+id/password_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/password"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:textSize="16sp"
+                        android:inputType="textPassword"
+                        android:maxLines="1"/>
+
+                    <ImageView
+                        android:id="@+id/visibility_iv"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:padding="10dp"
+                        android:src="@drawable/visibility_off"
+                        android:adjustViewBounds="true"
+                        android:layout_marginEnd="20dp"/>
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/round_back_dark_blue"
+                    android:paddingStart="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="40dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:text="@string/gender"/>
+
+                    <RadioGroup
+                        android:id="@+id/gender_radio_group"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/male_radio_btn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/male"/>
+
+                        <RadioButton
+                            android:id="@+id/female_radio_btn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/female"/>
+
+                    </RadioGroup>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Vehicle Information -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:textStyle="bold"
+                    android:text="@string/vehicle_info"/>
+
+                <!-- Driver Type Spinner -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/round_back_dark_blue"
+                    android:paddingStart="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="40dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:text="@string/driver_type"/>
+
+                    <Spinner
+                        android:id="@+id/driver_type_spinner"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+                <!-- Vehicle Name -->
+                <EditText
+                    android:id="@+id/vehicle_name_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@drawable/round_back_dark_blue"
+                    android:hint="@string/vehicle_name"
+                    android:maxLines="1"
+                    android:inputType="phone"
+                    android:textSize="16sp"
+                    android:paddingStart="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="40dp"/>
+
+                <!-- Vehicle Color -->
+                <EditText
+                    android:id="@+id/vehicle_color_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@drawable/round_back_dark_blue"
+                    android:hint="@string/vehicle_color"
+                    android:maxLines="1"
+                    android:inputType="phone"
+                    android:textSize="16sp"
+                    android:paddingStart="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="40dp"/>
+
+                <!-- Vehicle ID -->
+                <EditText
+                    android:id="@+id/vehicle_license_plate_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@drawable/round_back_dark_blue"
+                    android:hint="@string/vehicle_license_plate"
+                    android:maxLines="1"
+                    android:inputType="phone"
+                    android:textSize="16sp"
+                    android:paddingStart="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="40dp"/>
+            </LinearLayout>
+
+            <!--    License Information     -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:text="@string/license_info"
+                android:layout_marginTop="16dp"/>
+
+            <!-- Driver License -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:orientation="horizontal"
+                android:background="@drawable/round_back_dark_blue"
+                android:paddingStart="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="40dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_gravity="center"
+                    android:text="@string/driver_license"/>
+
+                <TextView
+                    android:id="@+id/driver_license"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:text="@string/date_format"
+                    android:onClick="showDatePicker"/>
+
+                <Button
+                    android:id="@+id/driver_license_date_picker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/primary"
+                    android:textColor="@color/white"
+                    android:text="@string/select"/>
+
+            </LinearLayout>
+
+            <!-- Vehicle Registration -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:orientation="horizontal"
+                android:background="@drawable/round_back_dark_blue"
+                android:paddingStart="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="40dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_gravity="center"
+                    android:text="@string/vehicle_registration"/>
+
+
+                <TextView
+                    android:id="@+id/vehicle_registration"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:text="@string/date_format"
+                    android:onClick="showDatePicker"/>
+
+                <Button
+                    android:id="@+id/vehicle_registration_date_picker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/primary"
+                    android:textColor="@color/white"
+                    android:text="@string/select"/>
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/submit_btn"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/submit"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/round_back_primary"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

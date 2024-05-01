@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Crab Driver</string>
+
+        <!--    Login Screen    -->
+    <string name="login_term">By registering or logging in, you agree to the Terms of Service and Privacy Policy.</string>
+    <string name="login">Login</string>
+    <string name="signup">Don\'t have an account? Register to be a driver now</string>
+
+    <string-array name="language_options">
+        <item>English</item>
+        <item>Tiếng Việt</item>
+    </string-array>
+    <string name="login_welcome">Please login to your account</string>
+    <string name="phone_number">Phone Number</string>
+
+        <!--    Signup Screen   -->
+    <string-array name="driver_type_options">
+        <item>Crab Bike</item>
+        <item>Crab Car 4</item>
+        <item>Crab Car 6</item>
+    </string-array>
+    <string name="pick_avatar">Pick photo</string>
+    <string name="personal_info">Personal Information</string>
+    <string name="vehicle_info">Vehicle Information</string>
+    <string name="full_name">Full name</string>
+    <string name="driver_type">Driver type</string>
+    <string name="vehicle_name">Vehicle name</string>
+    <string name="vehicle_color">Vehicle color</string>
+    <string name="vehicle_license_plate">License plate</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="license_info">License Information</string>
+    <string name="driver_license">Driver\'s license Issue date</string>
+    <string name="vehicle_registration">Vehicle registration date</string>
+    <string name="date_format">YYYY.MM.DD</string>
+    <string name="select">Select</string>
+    <string name="submit">Submit</string>
+    <string name="username">Username or Phone number</string>
+    <string name="password">Password</string>
+    <string name="password_forgot">Forgot password</string>
+    <string name="gender">Gender</string>
+    <string name="otp_welcome">Enter the OTP that we have sent to your</string>
+    <string name="otp_verify">Verify</string>
+    <string name="otp_receive">Didn\'t receive OTP?</string>
+    <string name="otp_resend">Resend code</string>
+</resources>

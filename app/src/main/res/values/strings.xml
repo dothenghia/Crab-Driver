@@ -1,3 +1,46 @@
 <resources>
     <string name="app_name">Crab Driver</string>
+
+        <!--    Main Screen    -->
+    <string name="login_term">Bằng việc đăng ký hoặc đăng nhập, bạn đã đồng ý với các Điều khoản dịch vụ và Chính sách bảo mật.</string>
+    <string name="login">Đăng nhập</string>
+    <string name="signup">Chưa có tài khoản? Đăng ký làm tài xế ngay</string>
+
+    <string-array name="language_options">
+        <item>English</item>
+        <item>Tiếng Việt</item>
+    </string-array>
+    <string name="login_welcome">Hãy đăng nhập vào tài khoản của bạn</string>
+    <string name="phone_number">Số điện thoại</string>
+
+        <!--    Signup Screen   -->
+    <string-array name="driver_type_options">
+        <item>Crab Bike</item>
+        <item>Crab Car 4</item>
+        <item>Crab Car 6</item>
+    </string-array>
+    <string name="pick_avatar">Chọn ảnh</string>
+    <string name="personal_info">Thông tin cá nhân</string>
+    <string name="vehicle_info">Thông tin phương tiện</string>
+    <string name="full_name">Họ và tên</string>
+    <string name="driver_type">Loại tài xế</string>
+    <string name="vehicle_name">Tên phương tiện</string>
+    <string name="vehicle_color">Màu sắc phương tiện</string>
+    <string name="vehicle_license_plate">Biển số xe</string>
+    <string name="male">Nam</string>
+    <string name="female">Nữ</string>
+    <string name="license_info">Thông tin giấy phép</string>
+    <string name="driver_license">Ngày cấp Giấy phép lái xe</string>
+    <string name="vehicle_registration">Ngày cấp giấy đăng ký xe</string>
+    <string name="date_format">YYYY.MM.DD</string>
+    <string name="select">Chọn</string>
+    <string name="submit">Gửi</string>
+    <string name="username">Tên đăng nhập hoặc số điện thoại</string>
+    <string name="password">Mật khẩu</string>
+    <string name="password_forgot">Quên mật khẩu</string>
+    <string name="gender">Giới tính</string>
+    <string name="otp_welcome">Hãy nhập mã OTP mà chúng tôi đã gửi đến</string>
+    <string name="otp_verify">Xác thực</string>
+    <string name="otp_receive">Chưa nhận được OTP?</string>
+    <string name="otp_resend">Gửi lại mã</string>
 </resources>
