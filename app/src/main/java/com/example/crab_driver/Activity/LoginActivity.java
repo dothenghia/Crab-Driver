@@ -32,11 +32,11 @@ public class LoginActivity extends AppCompatActivity {
                 if (passwordShowing) {
                     passwordShowing = false;
                     passwordEt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    visibilityIv.setImageResource(R.drawable.visibility_off);
+                    visibilityIv.setImageResource(R.drawable.icon_visibility_off);
                 } else {
                     passwordShowing = true;
                     passwordEt.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                    visibilityIv.setImageResource(R.drawable.visibility);
+                    visibilityIv.setImageResource(R.drawable.icon_visibility);
                 }
 
                 passwordEt.setSelection(passwordEt.length());

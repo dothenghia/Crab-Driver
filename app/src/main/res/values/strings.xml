@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Crab Driver</string>
 
-        <!--    Main Screen    -->
+    <!--    Main Screen    -->
     <string name="login_term">Bằng việc đăng ký hoặc đăng nhập, bạn đã đồng ý với các Điều khoản dịch vụ và Chính sách bảo mật.</string>
     <string name="login">Đăng nhập</string>
     <string name="signup">Chưa có tài khoản? Đăng ký làm tài xế ngay</string>
@@ -13,7 +13,7 @@
     <string name="login_welcome">Hãy đăng nhập vào tài khoản của bạn</string>
     <string name="phone_number">Số điện thoại</string>
 
-        <!--    Signup Screen   -->
+    <!--    Signup Screen   -->
     <string-array name="driver_type_options">
         <item>Crab Bike</item>
         <item>Crab Car 4</item>
@@ -43,4 +43,22 @@
     <string name="otp_verify">Xác thực</string>
     <string name="otp_receive">Chưa nhận được OTP?</string>
     <string name="otp_resend">Gửi lại mã</string>
+    <string name="control">Điều khiển</string>
+    <string name="account">Tài khoản</string>
+    <string name="settings">Cài đặt</string>
+    <string name="profile">Hồ sơ</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="john_doe">Quái xế</string>
+    <string name="edit">Chỉnh sửa</string>
+    <string name="active_status">Trạng thái hoạt động</string>
+    <string name="dark_mode">Chế độ ban đêm</string>
+    <string name="notification">Thông báo</string>
+    <string name="priv_and_sec">Quyền riêng tư và Bảo mật</string>
+    <string name="language">Ngôn ngữ</string>
+    <string name="work_history">Lịch sử hoạt động</string>
+    <string name="support_agent">Tổng đài hỗ trợ</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="delete_account">Xóa tài khoản</string>
+    <string name="revenue">Thống kê</string>
 </resources>

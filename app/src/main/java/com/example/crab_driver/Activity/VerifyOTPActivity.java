@@ -1,6 +1,7 @@
 package com.example.crab_driver.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -69,6 +70,13 @@ public class VerifyOTPActivity extends AppCompatActivity {
                 final String generateOtp = otpEt1.getText().toString()+otpEt2.getText().toString()+otpEt3.getText().toString()+otpEt4.getText().toString();
                 if (generateOtp.length()==4) {
                     // handle verification
+
+                    // success
+                    Intent intent = new Intent(VerifyOTPActivity.this, HomeActivity.class);
+//                    EditText et = findViewById(R.id.phone_number_et);
+//                    String phoneNumber = String.valueOf(et.getText());
+//                    intent.putExtra("phone_number", phoneNumber);
+                    startActivity(intent);
                 }
             }
         });
