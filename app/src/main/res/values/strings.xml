@@ -75,4 +75,11 @@
     <string name="ur_offline">Bạn đang tắt hoạt động</string>
     <string name="go_offline">Tắt hoạt động</string>
     <string name="finding_ride">Đang tìm kiếm cuốc xe</string>
+    <string name="payment_fee">Cước phí thanh toán</string>
+    <string name="voucher_applied">Đã áp dụng ưu đãi</string>
+    <string name="sample_note">Ghi chú: Đón tôi ở cổng B</string>
+    <string name="distance_to_you">Cách bạn:</string>
+    <string name="accept">Nhận cuốc</string>
+    <string name="decline">Từ chối</string>
+    <string name="auto_decline">Tự động từ chối sau:</string>
 </resources>

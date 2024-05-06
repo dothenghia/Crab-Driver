@@ -14,8 +14,6 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.crab_driver.Class.FirestoreConstants;
-
 import com.example.crab_driver.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,9 +23,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
-    String driverCollection = FirestoreConstants.DRIVER_COLLECTION;
-    String vehicleCollection = FirestoreConstants.VEHICLE_COLLECTION;
-    String vehicleTypeCollection = FirestoreConstants.VEHICLE_TYPE_COLLECTION;
     private boolean passwordShowing = false;
     FirebaseAuth mAuth;
     ProgressBar progressBar;

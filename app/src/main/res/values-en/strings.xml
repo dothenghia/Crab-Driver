@@ -73,4 +73,11 @@
     <string name="ur_offline">You\'re offline</string>
     <string name="go_offline">Go Offline</string>
     <string name="finding_ride">Searching for an order</string>
+    <string name="payment_fee">Payment Fee</string>
+    <string name="voucher_applied">Voucher applied</string>
+    <string name="sample_note">Note: Pick me up at the gate B</string>
+    <string name="distance_to_you">Distance to your location:</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
+    <string name="auto_decline">Auto decline in:</string>
 </resources>

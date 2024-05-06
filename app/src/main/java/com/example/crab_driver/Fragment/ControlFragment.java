@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.crab_driver.Dialog.NoInternetDialog;
+import com.example.crab_driver.Dialog.ReceiveOrderDialog;
 import com.example.crab_driver.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -97,6 +98,11 @@ public class ControlFragment extends Fragment implements OnMapReadyCallback {
                         // For example, navigate to another screen or perform further actions
                     }
                 }, 2000);
+
+                ReceiveOrderDialog receiveOrderDialog = new ReceiveOrderDialog(getActivity());
+                receiveOrderDialog.setCancelable(false);
+                receiveOrderDialog.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+                receiveOrderDialog.show();
             }
         });
         return rootView;
