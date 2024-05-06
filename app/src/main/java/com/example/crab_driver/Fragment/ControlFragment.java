@@ -2,7 +2,9 @@ package com.example.crab_driver.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.InsetDrawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 
@@ -101,6 +103,9 @@ public class ControlFragment extends Fragment implements OnMapReadyCallback {
 
                 ReceiveOrderDialog receiveOrderDialog = new ReceiveOrderDialog(getActivity());
                 receiveOrderDialog.setCancelable(false);
+//                ColorDrawable back = new ColorDrawable(Color.TRANSPARENT);
+//                InsetDrawable inset = new InsetDrawable(back, 5);
+//                receiveOrderDialog.getWindow().setBackgroundDrawable(inset);
                 receiveOrderDialog.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
                 receiveOrderDialog.show();
             }

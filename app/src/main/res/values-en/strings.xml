@@ -80,4 +80,11 @@
     <string name="accept">Accept</string>
     <string name="decline">Decline</string>
     <string name="auto_decline">Auto decline in:</string>
+    <string name="order_detail">Order Details</string>
+    <string name="chat">Chat with Customer</string>
+    <string name="call">Call Customer</string>
+    <string name="pick_up">Pick Up</string>
+    <string name="drop_off">Drop Off</string>
+    <string name="navigate">Navigate</string>
+    <string name="sample_info">GrabBike - 1 passenger</string>
 </resources>

@@ -82,4 +82,11 @@
     <string name="accept">Nhận cuốc</string>
     <string name="decline">Từ chối</string>
     <string name="auto_decline">Tự động từ chối sau:</string>
+    <string name="order_detail">Thông tin chi tiết cuốc</string>
+    <string name="chat">Nhắn tin</string>
+    <string name="call">Gọi điện</string>
+    <string name="pick_up">Đón khách</string>
+    <string name="drop_off">Trả khách</string>
+    <string name="navigate">Định vị</string>
+    <string name="sample_info">GrabBike - 1 hành khách</string>
 </resources>

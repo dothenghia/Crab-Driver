@@ -48,6 +48,7 @@
         <activity android:name=".Activity.SignupActivity" />
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.VerifyOTPActivity" />
+        <activity android:name=".Activity.ProcessOrderActivity"/>
     </application>
 
 </manifest>
