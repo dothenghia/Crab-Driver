@@ -88,7 +88,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <ImageView
-                            android:id="@+id/status_iv"
+                            android:id="@+id/noti_status_iv"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/icon_available"
@@ -100,7 +100,7 @@
                             android:layout_centerVertical="true"
                             android:text="@string/active_status"
                             android:textStyle="bold"
-                            android:layout_toEndOf="@+id/status_iv"
+                            android:layout_toEndOf="@+id/noti_status_iv"
                             />
                         <androidx.appcompat.widget.SwitchCompat
                             android:layout_width="50dp"

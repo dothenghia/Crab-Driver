@@ -59,4 +59,18 @@
     <string name="logout">Log out</string>
     <string name="delete_account">Delete account</string>
     <string name="revenue">Revenue</string>
+    <string name="no_internet">No Internet Connection</string>
+    <string name="no_internet_detail">You are not connected to the internet. Make sure to be connected to the internet for better experience.</string>
+    <string name="try_again">Try again</string>
+    <string name="recent_noti">Recent notifications</string>
+    <string name="complete_ride">You have just completed a ride with ID #00001</string>
+    <string name="auto_accept">Auto Accept</string>
+    <string name="working_capital">Working Capital</string>
+    <string name="my_destination">My Destination</string>
+    <string name="more">More</string>
+    <string name="go_online">Go Online</string>
+    <string name="ur_online">You\'re online</string>
+    <string name="ur_offline">You\'re offline</string>
+    <string name="go_offline">Go Offline</string>
+    <string name="finding_ride">Searching for an order</string>
 </resources>

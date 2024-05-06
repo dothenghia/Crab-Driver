@@ -61,4 +61,18 @@
     <string name="logout">Đăng xuất</string>
     <string name="delete_account">Xóa tài khoản</string>
     <string name="revenue">Thống kê</string>
+    <string name="no_internet">Không có kết nối Internet</string>
+    <string name="no_internet_detail">Bạn đã bị mất kết nối internet. Hãy đảm bảo kết nối tới internet để có thể sử dụng ứng dụng.</string>
+    <string name="try_again">Thử lại</string>
+    <string name="recent_noti">Thông báo gần đây</string>
+    <string name="complete_ride">Bạn vừa hoàn thành cuốc xe mã số #00001</string>
+    <string name="auto_accept">Tự động nhận chuyến</string>
+    <string name="working_capital">Trung tâm doanh nghiệp</string>
+    <string name="my_destination">Những điểm đến của tôi</string>
+    <string name="more">Xem thêm</string>
+    <string name="go_online">Bật hoạt động</string>
+    <string name="ur_online">Bạn đang hoạt động</string>
+    <string name="ur_offline">Bạn đang tắt hoạt động</string>
+    <string name="go_offline">Tắt hoạt động</string>
+    <string name="finding_ride">Đang tìm kiếm cuốc xe</string>
 </resources>

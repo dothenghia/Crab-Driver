@@ -81,7 +81,7 @@
                     android:text="@string/personal_info"/>
 
                 <EditText
-                    android:id="@+id/fullnam_et"
+                    android:id="@+id/fullname_et"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:background="@drawable/round_back_dark_blue"
@@ -103,6 +103,20 @@
                     android:maxLines="1"
                     android:maxLength="10"
                     android:inputType="phone"
+                    android:textSize="16sp"
+                    android:paddingStart="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="40dp"/>
+
+                <EditText
+                    android:id="@+id/email_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@drawable/round_back_dark_blue"
+                    android:hint="Email"
+                    android:maxLines="1"
+                    android:inputType="textEmailAddress"
                     android:textSize="16sp"
                     android:paddingStart="20dp"
                     android:layout_marginStart="20dp"
@@ -357,6 +371,12 @@
                     android:textColor="@color/white"
                     android:text="@string/select"/>
             </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/submit_btn"
