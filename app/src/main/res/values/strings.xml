@@ -91,4 +91,14 @@
     <string name="sample_info">GrabBike - 1 hành khách</string>
     <string name="payment_cash">Thanh toán tiền mặt</string>
     <string name="arriving">Đang đi</string>
+    <string name="income">Thu nhập</string>
+    <string name="revenue_summary">Tổng kết doanh thu</string>
+    <string name="daily">Hàng ngày</string>
+    <string name="weekly">Hàng tuần</string>
+    <string name="history">Lịch sử</string>
+    <string name="balance">Số dư</string>
+    <string name="withdraw">Rút về tài khoản</string>
+    <string name="receipt">Lịch sử giao dịch</string>
+    <string name="complete_orders">5 đơn hàng đã hoàn tất</string>
+    <string name="detail">Xem chi tiết</string>
 </resources>

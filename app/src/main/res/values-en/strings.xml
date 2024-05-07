@@ -89,4 +89,14 @@
     <string name="sample_info">GrabBike - 1 passenger</string>
     <string name="payment_cash">Pay by cash</string>
     <string name="arriving">Arriving</string>
+    <string name="income">Income</string>
+    <string name="revenue_summary">Revenue summary</string>
+    <string name="daily">Daily</string>
+    <string name="weekly">Weekly</string>
+    <string name="history">History</string>
+    <string name="balance">Balance</string>
+    <string name="withdraw">Withdraw money to account</string>
+    <string name="receipt">Transaction history</string>
+    <string name="complete_orders">5 completed orders</string>
+    <string name="detail">Order details</string>
 </resources>

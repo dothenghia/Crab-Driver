@@ -66,31 +66,6 @@ public class LoginActivity extends AppCompatActivity {
                 String phoneNumber = usernameEt.getText().toString();
                 intent.putExtra("phone_number", phoneNumber);
                 startActivity(intent);
-//                progressBar.setVisibility(View.VISIBLE);
-//                String username = usernameEt.getText().toString().trim();
-//                String password = passwordEt.getText().toString().trim();
-//
-//                if (TextUtils.isEmpty(username)) {
-//                    Toast.makeText(LoginActivity.this, "Enter username", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                if (TextUtils.isEmpty(password)) {
-//                    Toast.makeText(LoginActivity.this, "Enter password", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                mAuth.createUserWithEmailAndPassword(username, password)
-//                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<AuthResult> task) {
-//                                progressBar.setVisibility(View.GONE);
-//                                if (task.isSuccessful()) {
-//                                    FirebaseUser user = mAuth.getCurrentUser();
-//                                    //
-//                                } else {
-//
-//                                }
-//                            }
-//                        });
             }
         });
     }
