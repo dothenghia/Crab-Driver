@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,11 +42,29 @@ public class ProcessOrderActivity extends AppCompatActivity implements OnMapRead
                 String buttonText = pickUpBtn.getText().toString();
                 if (buttonText.equals(getString(R.string.pick_up))) {
                     pickUpBtn.setText(R.string.drop_off);
+                    pickUpBtn.setBackgroundResource(R.drawable.round_back_primary);
+                    pickUpBtn.setTextColor(getResources().getColor(R.color.black));
+
+                    TextView locationTv = findViewById(R.id.location_tv);
+                    locationTv.setText("Trường Đại học Khoa học Tự nhiên");
+                    TextView addressTv = findViewById(R.id.address_tv);
+                    addressTv.setText("227 Nguyễn Văn Cừ Phường 4 Quận 5 Ho Chi Minh");
+                    TextView taskTv = findViewById(R.id.task_tv);
+                    taskTv.setText(R.string.arriving);
                 } else if (buttonText.equals(getString(R.string.drop_off))) {
                     // Thong bao thanh cong
                 }
             }
         });
+
+        ImageButton chatWithCustomerBtn = findViewById(R.id.chat_btn);
+        chatWithCustomerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
     }
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {

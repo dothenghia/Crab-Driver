@@ -87,4 +87,6 @@
     <string name="drop_off">Drop Off</string>
     <string name="navigate">Navigate</string>
     <string name="sample_info">GrabBike - 1 passenger</string>
+    <string name="payment_cash">Pay by cash</string>
+    <string name="arriving">Arriving</string>
 </resources>

@@ -3,12 +3,395 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/back_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/icon_arrow_back"
+                android:layout_gravity="left"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="-40dp"
+                android:layout_height="30dp"
+                android:src="@drawable/logo"/>
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Line 0: Image Picker (Centered) -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/avatar_iv"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:src="@drawable/default_avatar"
+                        app:civ_border_width="4dp"
+                        app:civ_border_color="@color/black"/>
+
+                    <!-- Button for picking a photo -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/round_back_white_oval">
+
+                        <ImageView
+                            android:id="@+id/active_status_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:src="@drawable/icon_star"
+                            android:padding="14dp"/>
+
+                        <TextView
+                            android:id="@+id/active_status_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4.9"
+                            android:textColor="@color/black"
+                            android:layout_marginStart="20dp"
+                            android:layout_centerVertical="true"
+                            android:textStyle="bold"
+                            android:layout_toEndOf="@+id/active_status_iv"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <!-- Full Name -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:textStyle="bold"
+                        android:text="@string/personal_info"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/round_back_dark_blue"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="40dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="55dp"
+                            android:layout_weight="1"
+                            android:maxLines="1"
+                            android:text="@string/full_name"
+                            android:gravity="center_vertical"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_marginStart="20dp" />
+                        <TextView
+                            android:id="@+id/fullname_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="55dp"
+                            android:maxLines="1"
+                            android:text="Le Thi Hoai Thu"
+                            android:layout_marginEnd="20dp"
+                            android:textSize="16sp"
+                            android:layout_marginStart="20dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/round_back_dark_blue"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="40dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="55dp"
+                            android:layout_weight="1"
+                            android:maxLines="1"
+                            android:text="@string/phone_number"
+                            android:gravity="center_vertical"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_marginStart="20dp" />
+                        <TextView
+                            android:id="@+id/phone_number_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="55dp"
+                            android:maxLines="1"
+                            android:text="0123456789"
+                            android:layout_marginEnd="20dp"
+                            android:textSize="16sp"
+                            android:layout_marginStart="20dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/round_back_dark_blue"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="40dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="55dp"
+                            android:layout_weight="1"
+                            android:maxLines="1"
+                            android:text="Email"
+                            android:textStyle="bold"
+                            android:gravity="center_vertical"
+                            android:textSize="16sp"
+                            android:layout_marginStart="20dp" />
+                        <TextView
+                            android:id="@+id/email_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="55dp"
+                            android:maxLines="1"
+                            android:text="abc@gmail.com"
+                            android:layout_marginEnd="20dp"
+                            android:textSize="16sp"
+                            android:layout_marginStart="20dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/round_back_dark_blue"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="40dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="55dp"
+                            android:layout_weight="1"
+                            android:maxLines="1"
+                            android:text="@string/gender"
+                            android:gravity="center_vertical"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_marginStart="20dp" />
+                        <TextView
+                            android:id="@+id/gender_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="55dp"
+                            android:maxLines="1"
+                            android:text="@string/female"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginStart="20dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Vehicle Information -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:textStyle="bold"
+                        android:text="@string/vehicle_info"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/round_back_dark_blue"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="40dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="55dp"
+                            android:layout_weight="1"
+                            android:maxLines="1"
+                            android:text="@string/driver_type"
+                            android:gravity="center_vertical"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_marginStart="20dp" />
+                        <TextView
+                            android:id="@+id/driver_type_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="55dp"
+                            android:maxLines="1"
+                            android:text="Grab Bike"
+                            android:layout_marginEnd="20dp"
+                            android:textSize="16sp"
+                            android:layout_marginStart="20dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/round_back_dark_blue"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="40dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="55dp"
+                            android:layout_weight="1"
+                            android:maxLines="1"
+                            android:text="@string/vehicle_name"
+                            android:gravity="center_vertical"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_marginStart="20dp" />
+                        <TextView
+                            android:id="@+id/vehicle_name_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="55dp"
+                            android:maxLines="1"
+                            android:text="Exciter"
+                            android:layout_marginEnd="20dp"
+                            android:textSize="16sp"
+                            android:layout_marginStart="20dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/round_back_dark_blue"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="40dp">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="55dp"
+                            android:layout_weight="1"
+                            android:maxLines="1"
+                            android:text="@string/vehicle_license_plate"
+                            android:gravity="center_vertical"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_marginStart="20dp" />
+                        <TextView
+                            android:id="@+id/vehicle_license_plate_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="55dp"
+                            android:maxLines="1"
+                            android:text="00000000"
+                            android:layout_marginEnd="20dp"
+                            android:textSize="16sp"
+                            android:layout_marginStart="20dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--    License Information     -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:text="@string/license_info"
+                    android:layout_marginTop="16dp"/>
+
+                <!-- Driver License -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/round_back_dark_blue"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="40dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="55dp"
+                        android:layout_weight="1"
+                        android:maxLines="1"
+                        android:text="@string/driver_license"
+                        android:gravity="center_vertical"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_marginStart="20dp" />
+                    <TextView
+                        android:id="@+id/driver_license_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="55dp"
+                        android:maxLines="1"
+                        android:text="01/01/2024"
+                        android:layout_marginEnd="20dp"
+                        android:textSize="16sp"
+                        android:layout_marginStart="20dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/round_back_dark_blue"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="55dp"
+                        android:layout_weight="1"
+                        android:maxLines="1"
+                        android:text="@string/vehicle_registration"
+                        android:gravity="center_vertical"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_marginStart="20dp" />
+                    <TextView
+                        android:id="@+id/vehicle_registration_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="55dp"
+                        android:maxLines="1"
+                        android:text="01/01/2024"
+                        android:layout_marginEnd="20dp"
+                        android:textSize="16sp"
+                        android:layout_marginStart="20dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 </FrameLayout>

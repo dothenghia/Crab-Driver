@@ -89,4 +89,6 @@
     <string name="drop_off">Trả khách</string>
     <string name="navigate">Định vị</string>
     <string name="sample_info">GrabBike - 1 hành khách</string>
+    <string name="payment_cash">Thanh toán tiền mặt</string>
+    <string name="arriving">Đang đi</string>
 </resources>
