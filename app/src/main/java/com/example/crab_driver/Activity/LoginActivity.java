@@ -2,7 +2,6 @@ package com.example.crab_driver.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -21,50 +20,30 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.hbb20.CountryCodePicker;
 
 public class LoginActivity extends AppCompatActivity {
-    private boolean passwordShowing = false;
-    FirebaseAuth mAuth;
     ProgressBar progressBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
 
-        mAuth = FirebaseAuth.getInstance();
         progressBar = findViewById(R.id.progress_bar);
 
-        final EditText usernameEt = findViewById(R.id.username_et);
-        final EditText passwordEt = findViewById(R.id.password_et);
+        final EditText phoneNumberEt = findViewById(R.id.phone_number_et);
         final Button submitBtn = findViewById(R.id.submit_btn);
-        final ImageView visibilityIv = findViewById(R.id.visibility_iv);
-
-        // Show/Hide password
-        visibilityIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (passwordShowing) {
-                    passwordShowing = false;
-                    passwordEt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    visibilityIv.setImageResource(R.drawable.icon_visibility_off);
-                } else {
-                    passwordShowing = true;
-                    passwordEt.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                    visibilityIv.setImageResource(R.drawable.icon_visibility);
-                }
-
-                passwordEt.setSelection(passwordEt.length());
-            }
-        });
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, VerifyOTPActivity.class);
-                String phoneNumber = usernameEt.getText().toString();
-                intent.putExtra("phone_number", phoneNumber);
+
+                CountryCodePicker countryCodePicker = findViewById(R.id.country_code_picker);
+                countryCodePicker.registerCarrierNumberEditText(phoneNumberEt);
+
+                intent.putExtra("phone_number", countryCodePicker.getFullNumberWithPlus());
                 startActivity(intent);
             }
         });

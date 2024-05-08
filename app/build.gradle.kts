@@ -49,8 +49,10 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
 
     implementation("de.hdodenhof:circleimageview:3.1.0") // Circle ImageView
+    implementation("com.hbb20:ccp:2.6.0")   // Country Picker
 
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
+    implementation("com.google.android.gms:play-services-auth:21.1.0")
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.android.material:material:1.5.0")

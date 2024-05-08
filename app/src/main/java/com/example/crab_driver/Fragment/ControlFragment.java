@@ -54,6 +54,11 @@ public class ControlFragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_control, container, false);
 
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            String userId = bundle.getString("userID");
+        }
+
         if (!checkInternet()) {
             NoInternetDialog noInternetDialog = new NoInternetDialog(getActivity());
             noInternetDialog.setCancelable(false);

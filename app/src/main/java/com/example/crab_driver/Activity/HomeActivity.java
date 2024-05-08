@@ -19,11 +19,29 @@ import com.example.crab_driver.R;
 
 public class HomeActivity extends AppCompatActivity {
     private int selectedTab = 1;
+    ControlFragment controlFragment;
+    ProfileFragment profileFragment;
+    RevenueFragment revenueFragment;
+    SettingsFragment settingsFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
+
+        final String userId = getIntent().getStringExtra("userID");
+        controlFragment = new ControlFragment();
+        profileFragment = new ProfileFragment();
+        revenueFragment = new RevenueFragment();
+        settingsFragment = new SettingsFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("userID", userId);
+
+        controlFragment.setArguments(bundle);
+        profileFragment.setArguments(bundle);
+        revenueFragment.setArguments(bundle);
+        settingsFragment.setArguments(bundle);
 
         final LinearLayout controlLayout = findViewById(R.id.control_layout);
         final LinearLayout profileLayout = findViewById(R.id.profile_layout);
@@ -50,7 +68,7 @@ public class HomeActivity extends AppCompatActivity {
                 if (selectedTab != 1) {
                     getSupportFragmentManager().beginTransaction()
                             .setReorderingAllowed(true)
-                            .replace(R.id.fragment_container_view, ControlFragment.class, null)
+                            .replace(R.id.fragment_container_view, controlFragment)
                             .commit();
 
                     profileTv.setVisibility(View.GONE);
@@ -82,7 +100,7 @@ public class HomeActivity extends AppCompatActivity {
                 if (selectedTab != 2) {
                     getSupportFragmentManager().beginTransaction()
                             .setReorderingAllowed(true)
-                            .replace(R.id.fragment_container_view, ProfileFragment.class, null)
+                            .replace(R.id.fragment_container_view, profileFragment)
                             .commit();
 
                     controlTv.setVisibility(View.GONE);
@@ -114,7 +132,7 @@ public class HomeActivity extends AppCompatActivity {
                 if (selectedTab != 3) {
                     getSupportFragmentManager().beginTransaction()
                             .setReorderingAllowed(true)
-                            .replace(R.id.fragment_container_view, RevenueFragment.class, null)
+                            .replace(R.id.fragment_container_view, revenueFragment)
                             .commit();
 
                     profileTv.setVisibility(View.GONE);
@@ -146,7 +164,7 @@ public class HomeActivity extends AppCompatActivity {
                 if (selectedTab != 4) {
                     getSupportFragmentManager().beginTransaction()
                             .setReorderingAllowed(true)
-                            .replace(R.id.fragment_container_view, SettingsFragment.class, null)
+                            .replace(R.id.fragment_container_view, settingsFragment)
                             .commit();
 
                     profileTv.setVisibility(View.GONE);

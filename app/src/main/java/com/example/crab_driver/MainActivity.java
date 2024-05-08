@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.crab_driver.Activity.HomeActivity;
 import com.example.crab_driver.Activity.LoginActivity;
 import com.example.crab_driver.Activity.SignupActivity;
 
@@ -28,9 +29,11 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
 
         // Check if the user is logged in
-        if (isLoggedIn()) {
-//            startActivity(new Intent(this, DashboardActivity.class));
-            // Finish the current activity to prevent users from navigating back to it
+        String userId = userLoggedIn();
+        if (userId != null) {
+            Intent intent = new Intent(this, HomeActivity.class);
+            intent.putExtra("userID", userId);
+            startActivity(intent);
             finish();
         }
 
@@ -109,8 +112,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     // Method to check if the user is logged in
-    private boolean isLoggedIn() {
-        return false; // Placeholder
+    private String userLoggedIn() {
+        SharedPreferences sharedPreferences = getSharedPreferences("login_prefs", MODE_PRIVATE);
+        String userId = sharedPreferences.getString("userID", "");
+        if (!userId.isEmpty()) {
+            return userId;
+        }
+        return null;
     }
     private void setLocale(String language) {
         Locale currentLocale = getResources().getConfiguration().locale;

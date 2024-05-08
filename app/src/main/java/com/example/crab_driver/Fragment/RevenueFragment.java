@@ -23,6 +23,10 @@ public class RevenueFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_revenue, container, false);
 
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            String userId = bundle.getString("userID");
+        }
 
         return rootView;
     }
