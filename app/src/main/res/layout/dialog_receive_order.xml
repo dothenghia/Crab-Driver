@@ -3,12 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginBottom="100dp"
+    android:layout_marginTop="100dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
         app:cardUseCompatPadding="true"
         app:cardCornerRadius="10dp"
         app:cardBackgroundColor="@android:color/transparent">
@@ -48,6 +49,7 @@
                 </RelativeLayout>
 
                 <TextView
+                    android:id="@+id/fee_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="100.000 VND"
@@ -98,7 +100,7 @@
                         android:padding="14dp"/>
 
                     <TextView
-                        android:id="@+id/active_status_tv"
+                        android:id="@+id/vehicle_type_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Grab Bike"
@@ -208,6 +210,7 @@
                                 android:layout_toEndOf="@+id/location_iv"/>
 
                             <TextView
+                                android:id="@+id/pickup_address_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
@@ -245,6 +248,7 @@
                                 android:layout_toEndOf="@+id/location_iv"/>
 
                             <TextView
+                                android:id="@+id/destination_address_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/white"

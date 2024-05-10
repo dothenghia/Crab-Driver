@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.crab_driver.Object.Order;
 import com.example.crab_driver.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -35,7 +36,27 @@ public class ProcessOrderActivity extends AppCompatActivity implements OnMapRead
             getSupportFragmentManager().beginTransaction().replace(R.id.map, mapFragment).commit();
         }
 
+        Order order = (Order) getIntent().getSerializableExtra("order");
+
         Button pickUpBtn = findViewById(R.id.pick_up_btn);
+        ImageButton shutDownBtn = findViewById(R.id.shutdown_btn);
+        TextView customerInfoTv = findViewById(R.id.customer_info_tv);
+        TextView locationTv = findViewById(R.id.location_tv);
+        TextView addressTv = findViewById(R.id.address_tv);
+        TextView feeTv = findViewById(R.id.fee_tv);
+
+        customerInfoTv.setText(order.getCustomer().getName() + " - " + order.getCustomer().getPhoneNumber());
+        locationTv.setText("Trường Đại học Khoa học Tự nhiên");
+        addressTv.setText(order.getPickup().getAddress());
+        feeTv.setText(Float.toString(order.getFee()) + " VND");
+
+        shutDownBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         pickUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,7 +69,7 @@ public class ProcessOrderActivity extends AppCompatActivity implements OnMapRead
                     TextView locationTv = findViewById(R.id.location_tv);
                     locationTv.setText("Trường Đại học Khoa học Tự nhiên");
                     TextView addressTv = findViewById(R.id.address_tv);
-                    addressTv.setText("227 Nguyễn Văn Cừ Phường 4 Quận 5 Ho Chi Minh");
+                    addressTv.setText(order.getDestination().getAddress());
                     TextView taskTv = findViewById(R.id.task_tv);
                     taskTv.setText(R.string.arriving);
                 } else if (buttonText.equals(getString(R.string.drop_off))) {
@@ -65,6 +86,9 @@ public class ProcessOrderActivity extends AppCompatActivity implements OnMapRead
             }
         });
 
+    }
+    @Override
+    public void onBackPressed() {
     }
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {

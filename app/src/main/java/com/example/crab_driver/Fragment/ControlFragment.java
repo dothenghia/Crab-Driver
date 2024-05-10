@@ -2,6 +2,7 @@ package com.example.crab_driver.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.InsetDrawable;
@@ -22,9 +23,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.crab_driver.Dialog.NoInternetDialog;
 import com.example.crab_driver.Dialog.ReceiveOrderDialog;
+import com.example.crab_driver.Manager.DocumentManager;
+import com.example.crab_driver.Manager.FirestoreConstants;
+import com.example.crab_driver.Object.Driver;
+import com.example.crab_driver.Object.Order;
 import com.example.crab_driver.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -36,28 +42,33 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.List;
+
 public class ControlFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mMap;
     private SupportMapFragment mapFragment;
     private Button goOnlineBtn;
     private ImageButton searchForRideBtn;
     private View rootView;
+    private Driver driver;
+    private ProgressDialog progressDialog;
+    private boolean handleNextDocument = true;
+
     public ControlFragment() {
         // Required empty public constructor
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_control, container, false);
 
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            String userId = bundle.getString("userID");
-        }
+        driver = new Driver();
 
         if (!checkInternet()) {
             NoInternetDialog noInternetDialog = new NoInternetDialog(getActivity());
@@ -66,14 +77,50 @@ public class ControlFragment extends Fragment implements OnMapReadyCallback {
             noInternetDialog.show();
         }
 
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            String userId = bundle.getString("userID");
+
+            progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setMessage(getString(R.string.fetching));
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+
+            DocumentManager driverManager = new DocumentManager(FirestoreConstants.DRIVER);
+            driverManager.getDocumentData(userId, new DocumentManager.OnDocumentLoadedListener() {
+                @Override
+                public void onDocumentLoaded(Object documentData) {
+                    driver.parseFromObject(documentData, new Driver.OnParseCompleteListener() {
+                        @Override
+                        public void onParseComplete(Driver driver) {
+                            setDriver(driver);
+                            progressDialog.dismiss();
+                        }
+
+                        @Override
+                        public void onParseFailed(Exception e) {
+                            Toast.makeText(requireContext(), "ParseFailed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
+                @Override
+                public void onDocumentNotFound() {
+                    Log.d("ProfileFragment", "Document not found");
+                }
+
+                @Override
+                public void onError(Exception e) {
+                    Log.d("ProfileFragment", e.getMessage());
+                }
+            });
+        }
+
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         if (mapFragment == null) {
             mapFragment = SupportMapFragment.newInstance();
             getChildFragmentManager().beginTransaction().replace(R.id.map, mapFragment).commit();
         }
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.map);
-//        mapFragment.getMapAsync(this);
 
         goOnlineBtn = rootView.findViewById(R.id.go_online_btn);
         searchForRideBtn = rootView.findViewById(R.id.search_for_ride_btn);
@@ -87,39 +134,114 @@ public class ControlFragment extends Fragment implements OnMapReadyCallback {
         searchForRideBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ProgressDialog progressDialog = new ProgressDialog(getActivity());
-                progressDialog.setMessage(getString(R.string.finding_ride));
-                progressDialog.setCancelable(false);
-                progressDialog.show();
-
-                // Perform your task here, such as searching for a ride
-
-                // Simulate a delay or perform your search operation
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Dismiss the progress dialog after the task is completed
-                        progressDialog.dismiss();
-
-                        // Add your logic after the task is completed
-                        // For example, navigate to another screen or perform further actions
-                    }
-                }, 2000);
-
-                ReceiveOrderDialog receiveOrderDialog = new ReceiveOrderDialog(getActivity());
-                receiveOrderDialog.setCancelable(false);
-//                ColorDrawable back = new ColorDrawable(Color.TRANSPARENT);
-//                InsetDrawable inset = new InsetDrawable(back, 5);
-//                receiveOrderDialog.getWindow().setBackgroundDrawable(inset);
-                receiveOrderDialog.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
-                receiveOrderDialog.show();
+                handleNextDocument = true; // Reset the flag before processing documents
+                handleDocuments();
             }
         });
         return rootView;
     }
+
+    private void handleDocuments() {
+        if (!handleNextDocument) return;
+
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage(getString(R.string.finding_ride));
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        DocumentManager ordersManager = new DocumentManager(FirestoreConstants.ORDER);
+        String vehicleTypeID = driver.getVehicle().getVehicleType().getID();
+        ordersManager.getDocumentsWhereEqualTo(FirestoreConstants.ORDER_DRIVER, "", FirestoreConstants.VEHICLE_TYPE_ID, vehicleTypeID, new DocumentManager.OnDocumentsLoadedListener() {
+            @Override
+            public void onDocumentsLoaded(List<DocumentSnapshot> documents) {
+                Log.d("doc_number", Integer.toString(documents.size()));
+                progressDialog.dismiss();
+
+                if (!documents.isEmpty()) {
+                    handleNextDocument = false; // Set to false when dialog is shown
+                    handleLoadedDocuments(documents);
+                } else {
+                    // Show no orders found message
+                }
+            }
+
+            @Override
+            public void onDocumentsNotFound() {
+                progressDialog.dismiss();
+                Log.d("ProfileFragment", "Document not found");
+            }
+
+            @Override
+            public void onError(Exception e) {
+                progressDialog.dismiss();
+                Log.d("ProfileFragment", e.getMessage());
+            }
+        });
+    }
+
+    private void handleLoadedDocuments(List<DocumentSnapshot> documents) {
+        Order order = new Order();
+        handleDocumentAtIndex(documents, order, 0);
+    }
+
+    private void handleDocumentAtIndex(List<DocumentSnapshot> documents, Order order, int index) {
+        if (index >= documents.size()) {
+            // All documents processed
+            handleNextDocument = true; // Set to true after processing
+            return;
+        }
+
+        DocumentSnapshot document = documents.get(index);
+        DocumentManager orderManager = new DocumentManager(FirestoreConstants.ORDER);
+        orderManager.getDocumentData(document.getId(), new DocumentManager.OnDocumentLoadedListener() {
+            @Override
+            public void onDocumentLoaded(Object documentData) {
+                order.parseFromObject(documentData, new Order.OnParseCompleteListener() {
+                    @Override
+                    public void onParseComplete(Order parsedOrder) {
+                        if (parsedOrder.getDriver() == null) {
+                            Log.d("DiaChiDen", parsedOrder.getDestination().getAddress());
+                            Log.d("DiaChiDon", parsedOrder.getPickup().getAddress());
+                            Log.d("KhachHang", parsedOrder.getCustomer().getName());
+                            Log.d("SDT", parsedOrder.getCustomer().getPhoneNumber());
+
+                            ReceiveOrderDialog receiveOrderDialog = new ReceiveOrderDialog(getActivity(), parsedOrder);
+                            receiveOrderDialog.setCancelable(false);
+                            receiveOrderDialog.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+                            receiveOrderDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialog) {
+                                    handleDocumentAtIndex(documents, order, index + 1); // Process next document after dialog is dismissed
+                                }
+                            });
+                            receiveOrderDialog.show();
+                        } else {
+                            // Order already assigned to another driver
+                            handleDocumentAtIndex(documents, order, index + 1); // Process next document
+                        }
+                    }
+
+                    @Override
+                    public void onParseFailed(Exception e) {
+                        handleDocumentAtIndex(documents, order, index + 1); // Process next document
+                    }
+                });
+            }
+
+            @Override
+            public void onDocumentNotFound() {
+                handleDocumentAtIndex(documents, order, index + 1); // Process next document
+            }
+
+            @Override
+            public void onError(Exception e) {
+                handleDocumentAtIndex(documents, order, index + 1); // Process next document
+            }
+        });
+    }
+
     private boolean checkInternet() {
         ConnectivityManager connectivityManager = (ConnectivityManager) requireContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-
         return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 
@@ -143,13 +265,12 @@ public class ControlFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
+    private void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
-
-//                // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }

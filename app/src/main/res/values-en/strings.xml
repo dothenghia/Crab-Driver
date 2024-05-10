@@ -99,4 +99,5 @@
     <string name="receipt">Transaction history</string>
     <string name="complete_orders">5 completed orders</string>
     <string name="detail">Order details</string>
+    <string name="fetching">Fetching data</string>
 </resources>

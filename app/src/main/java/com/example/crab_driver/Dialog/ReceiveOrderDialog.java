@@ -17,37 +17,61 @@ import androidx.annotation.NonNull;
 import com.example.crab_driver.Activity.ProcessOrderActivity;
 import com.example.crab_driver.Activity.SignupActivity;
 import com.example.crab_driver.Activity.VerifyOTPActivity;
+import com.example.crab_driver.Object.Order;
 import com.example.crab_driver.R;
 
 public class ReceiveOrderDialog extends Dialog {
+    private Order order;
+    TextView feeTv;
+//    TextView vehicleTypeTv;
+    TextView destinationAddressTv;
+    TextView pickupAddressTv;
     TextView acceptTimeTv;
-    public ReceiveOrderDialog(@NonNull Context context) {
+    private boolean orderAccepted = false;
+    public ReceiveOrderDialog(@NonNull Context context, Order order) {
         super(context);
+        this.order = order;
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_receive_order);
 
+        feeTv = findViewById(R.id.fee_tv);
+//        vehicleTypeTv = findViewById(R.id.vehicle_type_tv);
+        destinationAddressTv = findViewById(R.id.destination_address_tv);
+        pickupAddressTv = findViewById(R.id.pickup_address_tv);
+
         acceptTimeTv = findViewById(R.id.accept_time_tv);
         Button declineBtn = findViewById(R.id.decline_btn);
         Button acceptBtn = findViewById(R.id.accept_btn);
-        declineBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-            }
-        });
-        acceptBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Context context = getContext();
-                Intent intent = new Intent(context, ProcessOrderActivity.class);
-                context.startActivity(intent);
 
-                dismiss();
-            }
-        });
+        if (getContext() != null) {
+            feeTv.setText(Float.toString(order.getFee()) + " VND");
+//        vehicleTypeTv.setText(order.getVehicleType().getName());
+            destinationAddressTv.setText(order.getDestination().getAddress());
+            pickupAddressTv.setText(order.getPickup().getAddress());
+
+            declineBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dismiss();
+                }
+            });
+            acceptBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    orderAccepted = true; // Set the flag to indicate order acceptance
+                    dismiss();
+
+                    Context context = getContext();
+                    Intent intent = new Intent(context, ProcessOrderActivity.class);
+                    // Pass the Order object to ProcessOrderActivity
+                    intent.putExtra("order", order);
+                    context.startActivity(intent);
+                }
+            });
+        }
 
         int waitingTime = 15;
         startCountDownTimer(waitingTime);
@@ -64,5 +88,9 @@ public class ReceiveOrderDialog extends Dialog {
                 dismiss();
             }
         }.start();
+    }
+
+    public boolean isOrderAccepted() {
+        return orderAccepted;
     }
 }

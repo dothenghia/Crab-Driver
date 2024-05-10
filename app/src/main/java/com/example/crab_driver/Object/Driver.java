@@ -8,9 +8,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class Driver {
+public class Driver implements Serializable {
     private String ID;
     private String name;
     private String gender;
@@ -22,73 +23,77 @@ public class Driver {
     }
 
     public void parseFromObject(Object documentData, OnParseCompleteListener listener) {
-        Driver driver = new Driver();
-        if (documentData != null) {
-            Map<String, Object> data = (Map<String, Object>) documentData;
-            driver.setName((String) data.get(FirestoreConstants.DRIVER_NAME));
-            driver.setGender((String) data.get(FirestoreConstants.DRIVER_GENDER));
-            driver.setEmail((String) data.get(FirestoreConstants.DRIVER_EMAIL));
-            driver.setPhoneNumber((String) data.get(FirestoreConstants.DRIVER_PHONE_NUMBER));
-            driver.setScore(((Number) data.get(FirestoreConstants.DRIVER_SCORE)).floatValue());
-            Log.d("HoTen", driver.getName());
-
-            // Parse the vehicle reference
-            Object vehicleRefObj = data.get(FirestoreConstants.VEHICLE);
-            if (vehicleRefObj instanceof DocumentReference) {
-                DocumentReference vehicleRef = (DocumentReference) vehicleRefObj;
-                Task<DocumentSnapshot> vehicleTask = vehicleRef.get();
-                vehicleTask.addOnCompleteListener(vehicleTaskResult -> {
-                    if (vehicleTaskResult.isSuccessful()) {
-                        DocumentSnapshot vehicleSnapshot = vehicleTaskResult.getResult();
-                        if (vehicleSnapshot.exists()) {
-                            Vehicle vehicle = new Vehicle();
-
-                            vehicle.setName((String) vehicleSnapshot.get(FirestoreConstants.VEHICLE_NAME));
-                            vehicle.setNumber((String) vehicleSnapshot.get(FirestoreConstants.VEHICLE_NUMBER));
-                            Log.d("TenXe", vehicle.getName());
-
-                            DocumentReference vehicleTypeRef = (DocumentReference) vehicleSnapshot.get(FirestoreConstants.VEHICLE_TYPE);
-                            Task<DocumentSnapshot> vehicleTypeTask = vehicleTypeRef.get();
-                            vehicleTypeTask.addOnCompleteListener(vehicleTypeTaskResult -> {
-                                if (vehicleTypeTaskResult.isSuccessful()) {
-                                    DocumentSnapshot vehicleTypeSnapshot = vehicleTypeTaskResult.getResult();
-                                    if (vehicleTypeSnapshot.exists()) {
-                                        VehicleType vehicleType = new VehicleType();
-
-                                        vehicleType.setName((String) vehicleTypeSnapshot.get(FirestoreConstants.VEHICLE_TYPE_NAME));
-                                        vehicleType.setCapacity(((Number) vehicleTypeSnapshot.get(FirestoreConstants.VEHICLE_TYPE_CAPACITY)).intValue());
-                                        vehicleType.setFee_1(((Number) vehicleTypeSnapshot.get(FirestoreConstants.VEHICLE_TYPE_FEE_1)).floatValue());
-                                        vehicleType.setFee_2(((Number) vehicleTypeSnapshot.get(FirestoreConstants.VEHICLE_TYPE_FEE_2)).floatValue());
-                                        vehicleType.setFee_3(((Number) vehicleTypeSnapshot.get(FirestoreConstants.VEHICLE_TYPE_FEE_3)).floatValue());
-                                        Log.d("TenLoaiXe", vehicleType.getName());
-
-                                        vehicle.setVehicleType(vehicleType);
-
-                                        // Set the vehicle to the driver
-                                        driver.setVehicle(vehicle);
-
-                                        // Notify listener that parsing is complete
-                                        listener.onParseComplete(driver);
-                                    } else {
-                                        listener.onParseFailed(new Exception("LoaiXe document does not exist"));
-                                    }
-                                } else {
-                                    listener.onParseFailed(vehicleTypeTaskResult.getException());
-                                }
-                            });
-                        } else {
-                            listener.onParseFailed(new Exception("Vehicle document does not exist"));
-                        }
-                    } else {
-                        listener.onParseFailed(vehicleTaskResult.getException());
-                    }
-                });
-            } else {
-                listener.onParseFailed(new Exception("Vehicle data is not a DocumentReference"));
-            }
-        } else {
+        if (documentData == null) {
             listener.onParseFailed(new Exception("Document data is null"));
+            return;
         }
+
+        Map<String, Object> data = (Map<String, Object>) documentData;
+        name = (String) data.get(FirestoreConstants.DRIVER_NAME);
+        gender = (String) data.get(FirestoreConstants.DRIVER_GENDER);
+        email = (String) data.get(FirestoreConstants.DRIVER_EMAIL);
+        phoneNumber = (String) data.get(FirestoreConstants.DRIVER_PHONE_NUMBER);
+        score = ((Number) data.get(FirestoreConstants.DRIVER_SCORE)).floatValue();
+        Log.d("HoTen", name);
+
+        Object vehicleRefObj = data.get(FirestoreConstants.VEHICLE);
+        if (vehicleRefObj instanceof DocumentReference) {
+            DocumentReference vehicleRef = (DocumentReference) vehicleRefObj;
+            Task<DocumentSnapshot> vehicleTask = vehicleRef.get();
+            vehicleTask.addOnCompleteListener(vehicleTaskResult -> {
+                if (vehicleTaskResult.isSuccessful()) {
+                    DocumentSnapshot vehicleSnapshot = vehicleTaskResult.getResult();
+                    if (vehicleSnapshot.exists()) {
+                        parseVehicle(vehicleSnapshot, listener);
+                    } else {
+                        listener.onParseFailed(new Exception("Vehicle document does not exist"));
+                    }
+                } else {
+                    listener.onParseFailed(vehicleTaskResult.getException());
+                }
+            });
+        } else {
+            listener.onParseFailed(new Exception("Vehicle data is not a DocumentReference"));
+        }
+    }
+
+    private void parseVehicle(DocumentSnapshot vehicleSnapshot, OnParseCompleteListener listener) {
+        Vehicle vehicle = new Vehicle();
+        vehicle.setName((String) vehicleSnapshot.get(FirestoreConstants.VEHICLE_NAME));
+        vehicle.setNumber((String) vehicleSnapshot.get(FirestoreConstants.VEHICLE_NUMBER));
+        Log.d("TenXe", vehicle.getName());
+
+        DocumentReference vehicleTypeRef = (DocumentReference) vehicleSnapshot.get(FirestoreConstants.VEHICLE_TYPE);
+        Task<DocumentSnapshot> vehicleTypeTask = vehicleTypeRef.get();
+        vehicleTypeTask.addOnCompleteListener(vehicleTypeTaskResult -> {
+            if (vehicleTypeTaskResult.isSuccessful()) {
+                DocumentSnapshot vehicleTypeSnapshot = vehicleTypeTaskResult.getResult();
+                if (vehicleTypeSnapshot.exists()) {
+                    parseVehicleType(vehicleTypeSnapshot, vehicle, listener);
+                } else {
+                    listener.onParseFailed(new Exception("Vehicle type document does not exist"));
+                }
+            } else {
+                listener.onParseFailed(vehicleTypeTaskResult.getException());
+            }
+        });
+    }
+
+    private void parseVehicleType(DocumentSnapshot vehicleTypeSnapshot, Vehicle vehicle, OnParseCompleteListener listener) {
+        VehicleType vehicleType = new VehicleType();
+        vehicleType.setName((String) vehicleTypeSnapshot.get(FirestoreConstants.VEHICLE_TYPE_NAME));
+        vehicleType.setID((String) vehicleTypeSnapshot.get(FirestoreConstants.VEHICLE_TYPE_ID));
+        vehicleType.setCapacity(((Number) vehicleTypeSnapshot.get(FirestoreConstants.VEHICLE_TYPE_CAPACITY)).intValue());
+        vehicleType.setFee_1(((Number) vehicleTypeSnapshot.get(FirestoreConstants.VEHICLE_TYPE_FEE_1)).floatValue());
+        vehicleType.setFee_2(((Number) vehicleTypeSnapshot.get(FirestoreConstants.VEHICLE_TYPE_FEE_2)).floatValue());
+        vehicleType.setFee_3(((Number) vehicleTypeSnapshot.get(FirestoreConstants.VEHICLE_TYPE_FEE_3)).floatValue());
+        Log.d("TenLoaiXe", vehicleType.getName());
+
+        vehicle.setVehicleType(vehicleType);
+        setVehicle(vehicle);
+
+        // Notify listener that parsing is complete
+        listener.onParseComplete(this);
     }
 
     public interface OnParseCompleteListener {

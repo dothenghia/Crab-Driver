@@ -60,7 +60,7 @@ public class HomeActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)
-                .replace(R.id.fragment_container_view, ControlFragment.class, null)
+                .replace(R.id.fragment_container_view, controlFragment, null)
                 .commit();
         controlLayout.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,6 +1,8 @@
 package com.example.crab_driver.Object;
 
-public class Vehicle {
+import java.io.Serializable;
+
+public class Vehicle implements Serializable {
     private String name;
     private String number;
     private VehicleType vehicleType;

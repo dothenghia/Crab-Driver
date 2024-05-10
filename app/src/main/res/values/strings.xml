@@ -101,4 +101,5 @@
     <string name="receipt">Lịch sử giao dịch</string>
     <string name="complete_orders">5 đơn hàng đã hoàn tất</string>
     <string name="detail">Xem chi tiết</string>
+    <string name="fetching">Đang khởi tạo dữ liệu</string>
 </resources>

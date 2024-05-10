@@ -1,6 +1,9 @@
 package com.example.crab_driver.Object;
 
-public class VehicleType {
+import java.io.Serializable;
+
+public class VehicleType implements Serializable {
+    private String ID;
     private String name;
     private int capacity;
     private float fee_1;
@@ -14,8 +17,16 @@ public class VehicleType {
         return name;
     }
 
+    public String getID() {
+        return ID;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     public int getCapacity() {
