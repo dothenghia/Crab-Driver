@@ -52,6 +52,7 @@ public class ControlFragment extends Fragment implements OnMapReadyCallback, Ret
     private ImageButton searchForRideBtn;
     private View rootView;
     private Driver driver;
+    private String userId;
     private ProgressDialog progressDialog;
     private boolean handleNextDocument = true;
 
@@ -80,7 +81,7 @@ public class ControlFragment extends Fragment implements OnMapReadyCallback, Ret
 
         Bundle bundle = getArguments();
         if (bundle != null) {
-            String userId = bundle.getString("userID");
+            userId = bundle.getString("userID");
 
             progressDialog = new ProgressDialog(getActivity());
             progressDialog.setMessage(getString(R.string.fetching));
@@ -206,7 +207,8 @@ public class ControlFragment extends Fragment implements OnMapReadyCallback, Ret
                             Log.d("KhachHang", parsedOrder.getCustomer().getName());
                             Log.d("SDT", parsedOrder.getCustomer().getPhoneNumber());
 
-                            ReceiveOrderDialog receiveOrderDialog = new ReceiveOrderDialog(getActivity(), parsedOrder);
+                            order.setID(document.getId());
+                            ReceiveOrderDialog receiveOrderDialog = new ReceiveOrderDialog(getActivity(), parsedOrder, userId);
                             receiveOrderDialog.setCancelable(false);
                             receiveOrderDialog.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
                             receiveOrderDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {

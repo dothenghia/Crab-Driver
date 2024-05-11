@@ -27,9 +27,8 @@ public class FirestoreConstants {
     public static final String ADDRESS_LATITUDE = "ViDo";
     public static final String ADDRESS_LONGTITUDE = "KinhDo";
     public static final String ORDER_CUSTOMER = "KhachHang";
-//    public static final String ORDER_START = "ThoiDiemBatDau";
-//    public static final String ORDER_END = "ThoiDiemKetThuc";
-//    public static final String ORDER_END = "ThoiDiemKetThuc";
+    public static final String ORDER_START = "ThoiDiemBatDau";
+    public static final String ORDER_END = "ThoiDiemKetThuc";
     public static final String CUSTOMER_NAME = "HoTen";
     public static final String CUSTOMER_PHONE = "SDT";
 }

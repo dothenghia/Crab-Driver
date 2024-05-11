@@ -21,16 +21,20 @@ import com.example.crab_driver.Object.Order;
 import com.example.crab_driver.R;
 
 public class ReceiveOrderDialog extends Dialog {
+    String userId;
     private Order order;
     TextView feeTv;
 //    TextView vehicleTypeTv;
     TextView destinationAddressTv;
+    TextView destinationLocationTv;
     TextView pickupAddressTv;
+    TextView pickupLocationTv;
     TextView acceptTimeTv;
     private boolean orderAccepted = false;
-    public ReceiveOrderDialog(@NonNull Context context, Order order) {
+    public ReceiveOrderDialog(@NonNull Context context, Order order, String userId) {
         super(context);
         this.order = order;
+        this.userId = userId;
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +43,10 @@ public class ReceiveOrderDialog extends Dialog {
 
         feeTv = findViewById(R.id.fee_tv);
 //        vehicleTypeTv = findViewById(R.id.vehicle_type_tv);
+        destinationLocationTv = findViewById(R.id.destination_location_tv);
         destinationAddressTv = findViewById(R.id.destination_address_tv);
         pickupAddressTv = findViewById(R.id.pickup_address_tv);
+        pickupLocationTv = findViewById(R.id.pickup_location_tv);
 
         acceptTimeTv = findViewById(R.id.accept_time_tv);
         Button declineBtn = findViewById(R.id.decline_btn);
@@ -49,8 +55,16 @@ public class ReceiveOrderDialog extends Dialog {
         if (getContext() != null) {
             feeTv.setText(Float.toString(order.getFee()) + " VND");
 //        vehicleTypeTv.setText(order.getVehicleType().getName());
-            destinationAddressTv.setText(order.getDestination().getAddress());
-            pickupAddressTv.setText(order.getPickup().getAddress());
+
+            String destinationAddress = order.getDestination().getAddress();
+            String[] destinationParts = destinationAddress.split(", ", 2);
+            destinationLocationTv.setText(destinationParts[0]);
+            destinationAddressTv.setText(destinationParts[1]);
+
+            String pickupAddress = order.getPickup().getAddress();
+            String[] pickupParts = pickupAddress.split(", ", 2);
+            pickupLocationTv.setText(pickupParts[0]);
+            pickupAddressTv.setText(pickupParts[1]);
 
             declineBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -63,11 +77,10 @@ public class ReceiveOrderDialog extends Dialog {
                 public void onClick(View view) {
                     orderAccepted = true; // Set the flag to indicate order acceptance
                     dismiss();
-
                     Context context = getContext();
                     Intent intent = new Intent(context, ProcessOrderActivity.class);
-                    // Pass the Order object to ProcessOrderActivity
                     intent.putExtra("order", order);
+                    intent.putExtra("userID", userId);
                     context.startActivity(intent);
                 }
             });

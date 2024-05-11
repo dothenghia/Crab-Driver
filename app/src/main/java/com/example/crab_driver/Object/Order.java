@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Map;
 
 public class Order implements Serializable {
+    String ID;
     private float fee;
     private String bookingMethod;
     private Address destination;
@@ -123,6 +124,14 @@ public class Order implements Serializable {
         } else {
             listener.onAddressParseFailed(new Exception("Address data is not a DocumentReference"));
         }
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     public float getFee() {
