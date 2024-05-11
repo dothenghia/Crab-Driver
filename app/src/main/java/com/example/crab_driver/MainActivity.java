@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -76,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
                 if (isFirst) {
                     isFirst = false;
                 } else {
-                    Toast.makeText(MainActivity.this, "Selected Language: " + selectedLanguage, Toast.LENGTH_SHORT).show();
                     switch (selectedLanguage) {
                         case "English":
                             selectedLanguage = "en";
@@ -107,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SignupActivity.class));
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
         });
     }

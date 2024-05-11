@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Crab Driver</string>
+    <string name="app_name">beMai Driver</string>
 
         <!--    Login Screen    -->
     <string name="login_term">By registering or logging in, you agree to the Terms of Service and Privacy Policy.</string>
@@ -15,9 +15,10 @@
 
         <!--    Signup Screen   -->
     <string-array name="driver_type_options">
-        <item>Crab Bike</item>
-        <item>Crab Car 4</item>
-        <item>Crab Car 6</item>
+        <item>beMai Bike</item>
+        <item>beMai Small</item>
+        <item>beMai Medium</item>
+        <item>beMai Large</item>
     </string-array>
     <string name="pick_avatar">Pick photo</string>
     <string name="personal_info">Personal Information</string>

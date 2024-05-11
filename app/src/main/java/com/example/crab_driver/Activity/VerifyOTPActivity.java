@@ -15,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.crab_driver.Manager.FirestoreConstants;
 import com.example.crab_driver.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,9 +37,16 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.w3c.dom.Text;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class VerifyOTPActivity extends AppCompatActivity {
@@ -55,6 +64,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
     private EditText otpEt5;
     private EditText otpEt6;
     private ProgressBar progressBar;
+    String phoneNumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +83,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
 
         resendBtn = findViewById(R.id.resend_btn);
 
-        final String phoneNumber = getIntent().getStringExtra("phone_number");
+        phoneNumber = getIntent().getStringExtra("phone_number");
         TextView phoneNumberTv = findViewById(R.id.phone_number_tv);
         phoneNumberTv.setText(phoneNumber);
         sendOtp(phoneNumber,false);
@@ -148,10 +158,29 @@ public class VerifyOTPActivity extends AppCompatActivity {
                         Log.d("signIn", "signInWithCredential:success");
                         saveUserToPreferences(task.getResult().getUser());
 
-                        Intent intent = new Intent(VerifyOTPActivity.this, HomeActivity.class);
-                        intent.putExtra("userID", task.getResult().getUser().getUid());
-                        startActivity(intent);
-                        finish();
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        CollectionReference driversCollection = db.collection(FirestoreConstants.DRIVER);
+
+                        driversCollection.whereEqualTo("SDT", phoneNumber).get().addOnCompleteListener(driverTask -> {
+                            if (driverTask.isSuccessful()) {
+                                QuerySnapshot querySnapshot = driverTask.getResult();
+                                if (querySnapshot != null && querySnapshot.isEmpty()) {
+                                    Intent intent = new Intent(VerifyOTPActivity.this, SignupActivity.class);
+                                    intent.putExtra("userID", task.getResult().getUser().getUid());
+                                    intent.putExtra("phone_number", phoneNumber);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+//                                    Toast.makeText(VerifyOTPActivity.this, "An account with this phone number already exists!", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(VerifyOTPActivity.this, HomeActivity.class);
+                                    intent.putExtra("userID", task.getResult().getUser().getUid());
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            } else {
+                                Toast.makeText(VerifyOTPActivity.this, "Failed to fetch documents: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     } else {
 
                         Log.w("signIn", "signInWithCredential:failure", task.getException());
