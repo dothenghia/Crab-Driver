@@ -20,13 +20,11 @@
         android:layout_marginRight="10dp"
         android:layout_alignParentBottom="true"
         app:cardUseCompatPadding="true"
-        app:cardCornerRadius="10dp"
-        app:cardBackgroundColor="@color/primary">
+        app:cardCornerRadius="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#FFFFFF">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/recent_noti_tv"
@@ -47,6 +45,7 @@
                         android:id="@+id/noti_status_iv"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
+                        android:layout_marginStart="12dp"
                         android:src="@drawable/icon_dot"
                         android:padding="12dp"/>
                     <TextView
@@ -195,19 +194,18 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         app:cardUseCompatPadding="true"
-        app:cardCornerRadius="10dp"
-        app:cardBackgroundColor="@color/primary">
+        app:cardCornerRadius="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/active_status_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/icon_dot_red"
+                android:layout_marginStart="10dp"
                 android:padding="14dp"/>
 
             <TextView
@@ -215,7 +213,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ur_offline"
-                android:textColor="@color/black"
                 android:layout_marginStart="20dp"
                 android:layout_centerVertical="true"
                 android:textSize="22sp"

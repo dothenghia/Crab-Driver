@@ -101,4 +101,10 @@
     <string name="complete_orders">5 completed orders</string>
     <string name="detail">Order details</string>
     <string name="fetching">Fetching data</string>
+    <string name="confirm_logout">You are attempting to log out?</string>
+    <string name="yes">Continue</string>
+    <string name="no">Cancel</string>
+    <string name="confirm_delete">You are deleting your account. Please note that this action will delete all data and cannot be undone</string>
+    <string name="delete_acc">Delete account</string>
+    <string name="choose_language">Select language</string>
 </resources>

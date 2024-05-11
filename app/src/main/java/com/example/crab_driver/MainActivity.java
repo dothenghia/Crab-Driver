@@ -13,6 +13,7 @@ import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.crab_driver.Activity.HomeActivity;
 import com.example.crab_driver.Activity.LoginActivity;
@@ -35,6 +36,14 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+
+        SharedPreferences themePreferences = getSharedPreferences("theme_prefs", MODE_PRIVATE);
+        int savedTheme = themePreferences.getInt("theme_mode", -1);
+        if (savedTheme == -1) {
+            // No theme preference saved, default to day theme
+            savedTheme = AppCompatDelegate.MODE_NIGHT_NO;
+        }
+        AppCompatDelegate.setDefaultNightMode(savedTheme);
 
         SharedPreferences sharedPreferences = getSharedPreferences("language_prefs", MODE_PRIVATE);
         String savedLanguage = sharedPreferences.getString("language", "");

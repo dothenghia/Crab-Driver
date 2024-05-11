@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.example.crab_driver.Dialog.NoInternetDialog;
 import com.example.crab_driver.Dialog.ReceiveOrderDialog;
+import com.example.crab_driver.Interface.RetryListener;
 import com.example.crab_driver.Manager.DocumentManager;
 import com.example.crab_driver.Manager.FirestoreConstants;
 import com.example.crab_driver.Object.Driver;
@@ -44,7 +45,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
-public class ControlFragment extends Fragment implements OnMapReadyCallback {
+public class ControlFragment extends Fragment implements OnMapReadyCallback, RetryListener {
     private GoogleMap mMap;
     private SupportMapFragment mapFragment;
     private Button goOnlineBtn;
@@ -71,7 +72,7 @@ public class ControlFragment extends Fragment implements OnMapReadyCallback {
         driver = new Driver();
 
         if (!checkInternet()) {
-            NoInternetDialog noInternetDialog = new NoInternetDialog(getActivity());
+            NoInternetDialog noInternetDialog = new NoInternetDialog(getActivity(), this);
             noInternetDialog.setCancelable(false);
             noInternetDialog.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
             noInternetDialog.show();
@@ -272,5 +273,17 @@ public class ControlFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
+    }
+
+    @Override
+    public void onRetry() {
+        if (checkInternet()) {
+            // Dismiss
+        } else {
+            NoInternetDialog noInternetDialog = new NoInternetDialog(getActivity(), this);
+            noInternetDialog.setCancelable(false);
+            noInternetDialog.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+            noInternetDialog.show();
+        }
     }
 }

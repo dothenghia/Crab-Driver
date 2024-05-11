@@ -103,4 +103,10 @@
     <string name="complete_orders">5 đơn hàng đã hoàn tất</string>
     <string name="detail">Xem chi tiết</string>
     <string name="fetching">Đang khởi tạo dữ liệu</string>
+    <string name="confirm_logout">Bạn đang thực hiện đăng xuất?</string>
+    <string name="yes">Tiếp tục</string>
+    <string name="no">Hủy</string>
+    <string name="confirm_delete">Bạn đang thực hiện vô hiệu hóa tài khoản. Lưu ý rằng hành động này sẽ xóa toàn bộ dữ liệu và không thể hoàn tác</string>
+    <string name="delete_acc">Xóa tài khoản</string>
+    <string name="choose_language">Chọn ngôn ngữ</string>
 </resources>

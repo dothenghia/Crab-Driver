@@ -10,11 +10,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.crab_driver.Interface.RetryListener;
 import com.example.crab_driver.R;
 
 public class NoInternetDialog extends Dialog {
-    public NoInternetDialog(@NonNull Context context) {
+    private RetryListener retryListener;
+    public NoInternetDialog(@NonNull Context context, RetryListener retryListener) {
         super(context);
+        this.retryListener = retryListener;
     }
 
     @Override
@@ -26,7 +29,10 @@ public class NoInternetDialog extends Dialog {
         tryAgainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("No internet", "Retry Clicked!");
+                if (retryListener != null) {
+                    retryListener.onRetry();
+                }
+                dismiss();
             }
         });
     }
