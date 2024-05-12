@@ -107,4 +107,8 @@
     <string name="confirm_delete">You are deleting your account. Please note that this action will delete all data and cannot be undone</string>
     <string name="delete_acc">Delete account</string>
     <string name="choose_language">Select language</string>
+    <string name="input_msg">Input...</string>
+    <string name="auto_msg">Please wait. I\'ll come to pick you up in a moment.</string>
+    <string name="auto_msg2">I\'ve encountered some minor issues. Sorry for the inconvenience.</string>
+    <string name="auto_msg3">Please note: I\'ll be there in about 5 minutes.</string>
 </resources>

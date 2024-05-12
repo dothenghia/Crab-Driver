@@ -109,4 +109,8 @@
     <string name="confirm_delete">Bạn đang thực hiện vô hiệu hóa tài khoản. Lưu ý rằng hành động này sẽ xóa toàn bộ dữ liệu và không thể hoàn tác</string>
     <string name="delete_acc">Xóa tài khoản</string>
     <string name="choose_language">Chọn ngôn ngữ</string>
+    <string name="input_msg">Nhập tin nhắn...</string>
+    <string name="auto_msg">Vui lòng đợi. Tôi sẽ đến đón bạn trong giât lát.</string>
+    <string name="auto_msg2">Tôi đã gặp một số vấn đề nhỏ. Xin lỗi về sự bất tiện này.</string>
+    <string name="auto_msg3">Xin lưu ý: Tôi sẽ đến trong khoảng 5 phút.</string>
 </resources>
