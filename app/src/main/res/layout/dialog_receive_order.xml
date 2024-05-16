@@ -209,10 +209,12 @@
                                 android:textStyle="bold"
                                 android:textSize="20sp"
                                 android:textColor="@color/white"
+                                android:ellipsize="end"
                                 android:layout_toEndOf="@+id/location_iv"/>
 
                             <TextView
                                 android:id="@+id/pickup_address_tv"
+                                android:visibility="gone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
@@ -247,12 +249,14 @@
                                 android:layout_centerVertical="true"
                                 android:text="Trường ĐH Khoa học Tự nhiên"
                                 android:textColor="@color/white"
+                                android:ellipsize="end"
                                 android:textStyle="bold"
                                 android:textSize="20sp"
                                 android:layout_toEndOf="@+id/location_iv"/>
 
                             <TextView
                                 android:id="@+id/destination_address_tv"
+                                android:visibility="gone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/white"

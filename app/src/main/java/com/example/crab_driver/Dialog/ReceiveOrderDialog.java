@@ -57,14 +57,10 @@ public class ReceiveOrderDialog extends Dialog {
 //        vehicleTypeTv.setText(order.getVehicleType().getName());
 
             String destinationAddress = order.getDestination().getAddress();
-            String[] destinationParts = destinationAddress.split(", ", 2);
-            destinationLocationTv.setText(destinationParts[0]);
-            destinationAddressTv.setText(destinationParts[1]);
+            destinationLocationTv.setText(destinationAddress);
 
             String pickupAddress = order.getPickup().getAddress();
-            String[] pickupParts = pickupAddress.split(", ", 2);
-            pickupLocationTv.setText(pickupParts[0]);
-            pickupAddressTv.setText(pickupParts[1]);
+            pickupLocationTv.setText(pickupAddress);
 
             declineBtn.setOnClickListener(new View.OnClickListener() {
                 @Override

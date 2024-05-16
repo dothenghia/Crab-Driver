@@ -65,9 +65,7 @@ public class ProcessOrderActivity extends AppCompatActivity implements OnMapRead
         customerInfoTv.setText(order.getCustomer().getName() + " - " + order.getCustomer().getPhoneNumber());
 
         String pickupAddress = order.getPickup().getAddress();
-        String[] pickupParts = pickupAddress.split(", ", 2);
-        locationTv.setText(pickupParts[0]);
-        addressTv.setText(pickupParts[1]);
+        locationTv.setText(pickupAddress);
 
         feeTv.setText(Float.toString(order.getFee()) + " VND");
 
@@ -94,9 +92,7 @@ public class ProcessOrderActivity extends AppCompatActivity implements OnMapRead
                     TextView locationTv = findViewById(R.id.location_tv);
                     TextView addressTv = findViewById(R.id.address_tv);
                     String destinationAddress = order.getDestination().getAddress();
-                    String[] destinationParts = destinationAddress.split(", ", 2);
-                    locationTv.setText(destinationParts[0]);
-                    addressTv.setText(destinationParts[1]);
+                    locationTv.setText(destinationAddress);
 
                     TextView taskTv = findViewById(R.id.task_tv);
                     taskTv.setText(R.string.arriving);
