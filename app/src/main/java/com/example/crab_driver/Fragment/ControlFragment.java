@@ -33,9 +33,11 @@ import com.example.crab_driver.Manager.FirestoreConstants;
 import com.example.crab_driver.Object.Driver;
 import com.example.crab_driver.Object.Order;
 import com.example.crab_driver.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -275,6 +277,8 @@ public class ControlFragment extends Fragment implements OnMapReadyCallback, Ret
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
+        LatLng hcm = new LatLng(10.762721851436474, 106.68228328003723);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hcm, 15));
     }
 
     @Override

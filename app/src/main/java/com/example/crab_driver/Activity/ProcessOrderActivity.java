@@ -20,9 +20,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.crab_driver.Manager.FirestoreConstants;
 import com.example.crab_driver.Object.Order;
 import com.example.crab_driver.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -197,5 +199,7 @@ public class ProcessOrderActivity extends AppCompatActivity implements OnMapRead
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
+        LatLng hcm = new LatLng(10.762721851436474, 106.68228328003723);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hcm, 15));
     }
 }
